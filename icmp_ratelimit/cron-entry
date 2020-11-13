@@ -1,0 +1,2 @@
+# Copy to /etc/cron.d/icmp_ratelimit
+* * * * * root /path/to/icmp_ratelimit.sh >/dev/null 2>/dev/null
