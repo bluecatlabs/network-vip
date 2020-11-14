@@ -1,2 +1,2 @@
 # Copy to /etc/cron.d/icmp_ratelimit
-* * * * * root /path/to/icmp_ratelimit.sh >/dev/null 2>/dev/null
+*/10 * * * * flock -xn /path/to/lockfile/.icmpratelimit-lock -c /path/to/icmp_ratelimit.sh

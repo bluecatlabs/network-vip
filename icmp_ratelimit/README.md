@@ -1,21 +1,21 @@
-## Three options for installation
+## Options for installation
 
-Change _/path/to_ in the following steps to match the exact location of the script.
+Change _/path/to_ in the following steps to match the exact location of the 
+script and the location where you wish to store the lock file (e.g. /var/run)
 
-Choose one of the following:
+Choose one of the following (you can have cron check more or less frequently 
+by changing the interval, here: 10 min):
 
-1. Copy the script to _/etc/cron.minutely_
-
-2. Copy the script to the DNS server. Create a file in _/etc/cron.d_ with the following syntax:
-
-    ```
-    * * * * *    root    /path/to/icmp_ratelimit.sh >/dev/null 2>&1
-    ```
-
-3. Create a user cron entry while using `crontab -e`
+1. Copy the script to the DNS server. Create a file in _/etc/cron.d_ with the following syntax:
 
     ```
-    * * * * *    /path/to/icmp_ratelimit.sh >/dev/null 2>&1
+    */10 * * * *    root    flock -xn /path/to/.icmpratelimit-lock -c /path/to/icmp_ratelimit.sh
+    ```
+
+2. Create a user cron entry while using `crontab -e`
+
+    ```
+    */10 * * * *    flock -xn /path/to/.icmpratelimit-lock -c /path/to/icmp_ratelimit.sh
     ```
 
 And finally, make sure the script is executable. 
