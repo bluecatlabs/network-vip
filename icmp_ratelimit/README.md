@@ -2,7 +2,7 @@
 
 Change _/path/to_ in the following steps to match the exact location of the script.
 
-Choose one of the following:
+Choose one of the following (you can have cron check more or less frequently by changing the interval, here: 10 min):
 
 1. Copy the script to the DNS server. Create a file in _/etc/cron.d_ with the following syntax:
 
